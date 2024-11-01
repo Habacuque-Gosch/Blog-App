@@ -3,7 +3,7 @@ const router = express.Router()
 
 
 router.get('/', (req, res) => {
-    res.send('pagina inicial admin')
+    res.render('admin/index')
 })
 
 router.get('/home-admin', (req, res) => {
