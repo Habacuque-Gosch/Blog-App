@@ -6,8 +6,16 @@ router.get('/', (req, res) => {
     res.render('admin/index')
 })
 
-router.get('/home-admin', (req, res) => {
-    res.send('teste admin')
+router.get('/categorias', (req, res) => {
+    res.render('admin/categorias')
+})
+
+router.get('/add-categorias', (req,res) => {
+    res.render('admin/addcategorias')
+})
+
+router.post('/nova-categoria', (req, res) => {
+    res.send('adicionou uma nova categoria')
 })
 
 
