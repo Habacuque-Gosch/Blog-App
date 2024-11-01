@@ -30,6 +30,10 @@ const path = require('path')
 
 // Routers
 
+    app.get('/', (req, res) => {
+        res.render('blog/index')
+    })
+
     app.use('/admin', admin)
 
 // Server
