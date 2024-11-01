@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 const handlebars = require('express-handlebars')
 const bodyParser = require('body-parser')
+const admin = require('./routes/admin/admin')
 // const Postagem = require('./models/Postagem')
 // const Usuario = require('./models/Usuario')
 
@@ -23,14 +24,9 @@ const bodyParser = require('body-parser')
 
     // mongoose
 
-
 // Routers
 
-    app.get('/', function(res, req){
-        req.send('teste')
-    })
-
-
+    app.use('/admin', admin)
 
 // Server
 const PORT = 8081
