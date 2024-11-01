@@ -3,6 +3,7 @@ const app = express()
 const handlebars = require('express-handlebars')
 const bodyParser = require('body-parser')
 const admin = require('./routes/admin/admin')
+const path = require('path')
 // const Postagem = require('./models/Postagem')
 // const Usuario = require('./models/Usuario')
 
@@ -23,6 +24,9 @@ const admin = require('./routes/admin/admin')
     app.use(bodyParser.urlencoded({ extended: false }));
 
     // mongoose
+
+    // Public statics files
+    app.use(express.static(path, join(__dirname,'public')))
 
 // Routers
 
