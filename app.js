@@ -2,11 +2,8 @@ const express = require('express')
 const app = express()
 const handlebars = require('express-handlebars')
 const bodyParser = require('body-parser')
-const admin = require('./routes/admin/admin')
+const admin = require('./routes/admin')
 const path = require('path')
-// const Postagem = require('./models/Postagem')
-// const Usuario = require('./models/Usuario')
-
 
 // CONFIG
     // Template Engine
@@ -24,6 +21,14 @@ const path = require('path')
     app.use(bodyParser.urlencoded({ extended: false }));
 
     // mongoose
+        const mongoose = require('mongoose')
+        mongoose.Promise = global.Promise
+        mongoose.connect('mongodb://localhost/blogapp').then(() =>{
+            console.log('MongoDB conectado')
+        }).catch((erro) =>{
+            console.log('houveum erro ao se conectar ao mongoDB ' +erro)
+        })
+
 
     // Public statics files
     app.use(express.static(path.join(__dirname,'public')))
@@ -39,5 +44,5 @@ const path = require('path')
 // Server
 const PORT = 8081
 app.listen(PORT,() => {
-    console.log('Server is on in localhost(Notes App)')
+    console.log('Server is on in localhost(Blog App)')
 })  
