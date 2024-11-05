@@ -10,7 +10,11 @@ router.get('/', (req, res) => {
 })
 
 router.get('/categorias', (req, res) => {
-    res.render('admin/categorias')
+    Categoria.find().sort({date: 'desc'}).then((categorias) => {
+        res.render('admin/categorias', {categorias:categorias})
+    }).catch((error) => {
+        req.flash('error_msg', 'houve um erro ao carregar as categorias')
+    })
 })
 
 router.all('/add-categoria', (req,res) => {
