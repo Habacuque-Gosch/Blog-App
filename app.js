@@ -21,17 +21,22 @@ const path = require('path')
     app.use(bodyParser.urlencoded({ extended: false }));
 
     // mongoose
-        const mongoose = require('mongoose')
-        mongoose.Promise = global.Promise
-        mongoose.connect('mongodb://localhost/blogapp').then(() =>{
-            console.log('MongoDB conectado')
-        }).catch((erro) =>{
-            console.log('houveum erro ao se conectar ao mongoDB ' +erro)
-        })
+    const mongoose = require('mongoose')
+    mongoose.Promise = global.Promise
+    mongoose.connect('mongodb://localhost/blogapp').then(() =>{
+        console.log('MongoDB conectado')
+    }).catch((erro) =>{
+        console.log('houveum erro ao se conectar ao mongoDB ' +erro)
+    })
 
 
     // Public statics files
     app.use(express.static(path.join(__dirname,'public')))
+
+    app.use((req, res, next)=>{
+        console.log('middleware is on')
+        next()
+    })
 
 // Routers
 
