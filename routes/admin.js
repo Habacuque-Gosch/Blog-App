@@ -16,20 +16,37 @@ router.get('/categorias', (req, res) => {
 router.all('/add-categoria', (req,res) => {
 
     if (req.method == 'POST'){
+
         var nome_categoria = req.body.nome
         var slug_categoria = req.body.slug
 
-        console.log(nome_categoria)
-        console.log(slug_categoria)
+        if(!nome_categoria || typeof nome_categoria == undefined || nome_categoria == null) {
+            req.flash('error_msg', 'Nome inválido')
+            res.redirect('/admin/add-categoria')
+        }
+        
+        if(!slug_categoria || typeof slug_categoria == undefined || slug_categoria == null) {
+            req.flash('error_msg', 'Slug inválido')
+            res.redirect('/admin/add-categoria')
+        } else {
 
-        new Categoria({
-            nome: nome_categoria,
-            slug: slug_categoria
-        }).save().then(() => {
-            console.log('categoria criada com sucesso')
-        }).catch((erro) => {
-            console.log('erro ao criar categoria: '+erro)
-        })
+            console.log(nome_categoria)
+            console.log(slug_categoria)
+    
+            new Categoria({
+                nome: nome_categoria,
+                slug: slug_categoria
+            }).save().then(() => {
+                req.flash('success_msg', 'categoria criada com sucesso')
+                res.redirect('/admin/categorias')
+            }).catch((erro) => {
+                req.flash('error_msg', 'erro ao criar categoria')
+                res.redirect('/admin/add-categoria')
+            })
+
+        }
+
+
     }
 
     res.render('admin/addcategorias')
