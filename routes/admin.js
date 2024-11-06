@@ -48,7 +48,8 @@ router.all('/add-categoria', (req,res) => {
                 slug: slug_categoria
             }).then(() => {
                 req.flash('success_msg', 'categoria criada com sucesso')
-                res.redirect('/admin/categorias')
+                console.log('log categoria criada com sucesso')
+                return res.redirect('/admin/categorias')
             }).catch((erro) => {
                 req.flash('error_msg', 'erro ao criar categoria')
                 res.redirect('/admin/add-categoria')
@@ -83,6 +84,8 @@ router.all('/edit-categoria/:id', (req, res) => {
 
         if (req.method == 'POST'){
 
+            console.log(categoria)
+            
             var nome_categoria = req.body.nome
             var slug_categoria = req.body.slug
     
