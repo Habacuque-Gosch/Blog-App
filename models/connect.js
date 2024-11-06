@@ -101,5 +101,5 @@ const Schema = mongoose.Schema
 
     // Collection
 
-    const Postagem = mongoose.model('postagens', PostagemSchema)
+    // const Postagem = mongoose.model('postagens', PostagemSchema)
 
