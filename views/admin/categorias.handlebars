@@ -7,10 +7,13 @@
         <div class="card-body">
             <p>{{nome}}</p>
             <small>Slug: {{slug}}</small>
+            <br>
+            <a href="/admin/edit-categoria/{{id}}"><button class="btn btn-success mt-2">Editar Categoria</button></a>
+            <a href="/admin/delete-categoria/{{id}}"><button class="btn btn-danger mt-2">Deletar Categoria</button></a>
         </div>
     </div>
     <br>
 
 {{else}}
-
+    <h4>Nenhuma categoria encontrada</h4>
 {{/each}}

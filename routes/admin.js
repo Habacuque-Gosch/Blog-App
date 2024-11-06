@@ -56,4 +56,44 @@ router.all('/add-categoria', (req,res) => {
     res.render('admin/addcategorias')
 })
 
+router.all('/edit-categoria/:id', (req, res) => {
+
+    Categoria.findOne({_id:req.params.id}).then((categoria) => {
+
+        if (req.method == 'POST'){
+
+            var nome_categoria = req.body.nome
+            var slug_categoria = req.body.slug
+    
+            categoria.nome = nome_categoria
+            categoria.slug = slug_categoria
+    
+            categoria.save().then(() => {
+                req.flash('success_msg', 'categoria editada com sucesso')
+                res.redirect('/admin/categorias')
+            }).catch((erro) => {
+                req.flash('error_msg', 'erro ao editar categoria')
+                res.redirect('/admin/add-categoria')
+            })
+
+        } else {
+            res.render('admin/edit_categoria', {categoria: categoria})
+        }
+
+    }).catch((erro) => {
+        req.flash('error_msg', 'Essa categoria não existe')
+        res.redirect('/admin/categorias')
+    })
+})
+
+router.get('/delete-categoria/:id', (req, res) => {
+    Categoria.deleteOne({_id:req.params.id}).then(() => {
+        req.flash('success_msg', 'Categoria deletada com sucesso')
+        res.redirect('/admin/categorias')
+    }).catch((erro) => {
+        req.flash('error_msg', 'Essa categoria não existe')
+        res.redirect('/admin/categorias')
+    })
+})
+
 module.exports = router
