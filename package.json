@@ -10,12 +10,10 @@
     "author": "",
     "license": "ISC",
     "dependencies": {
-    "express": "^4.21.1",
-    "body-parser": "1.20.3",
-    "connect-flash":"0.1.1",
-    "express-handlebars":"8.0.1",
-    "express-session":"1.18.1",
-    "mogoose":"0.0.1-security",
-    "mongoose": "8.7.3"
+        "body-parser": "^1.20.3",
+        "express": "^4.21.1",
+        "express-handlebars": "^8.0.1",
+        "mysql2": "^3.11.3",
+        "sequelize": "^6.37.4"
     }
 }

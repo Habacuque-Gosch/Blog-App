@@ -1,12 +1,12 @@
-const mongoose = require('mongoose')
+// const mongoose = require('mongoose')
 
 // Config Mongoose
-    mongoose.Promise = global.Promise
-    mongoose.connect('mongodb://localhost/blogapp').then(() =>{
-        console.log('MongoDB conectado')
-    }).catch((erro) =>{
-        console.log('houveum erro ao se conectar ao mongoDB ' +erro)
-    })
+    // mongoose.Promise = global.Promise
+    // mongoose.connect('mongodb://localhost/blogapp').then(() =>{
+    //     console.log('MongoDB conectado')
+    // }).catch((erro) =>{
+    //     console.log('houveum erro ao se conectar ao mongoDB ' +erro)
+    // })
 
 // Model - Usuarios
     // const UsuarioSchema = mongoose.Schema({
