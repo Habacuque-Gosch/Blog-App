@@ -1,20 +1,38 @@
+const { Schema } = require('mongoose')
+const Categoria = require('./Categoria')
 const db = require('./db')
 
 
 const Postagem = db.sequelize.define('postagens',{
-    nome: {
-        type: db.Sequelize.STRING
+    titulo: {
+        type: db.Sequelize.STRING,
+        require: true
     },
     slug: {
-        type: db.Sequelize.STRING
+        type: db.Sequelize.STRING,
+        require: true
+    },
+    descricao: {
+        type: db.Sequelize.STRING,
+        require: true
+    },
+    conteudo: {
+        type: db.Sequelize.STRING,
+        require: true
+    },
+    date: {
+        type: db.Sequelize.DATE,
+        default: Date.now()
     }
 }
 )
 
+Postagem.belongsTo(Categoria)
+
 // SYNC MODEL
-// Categoria.sync({force: true}).then(function(){
+// Postagem.sync({force: true}).then(() =>{
 //     console.log('Model postagem criado com sucesso')
-// }).catch(function(erro){
+// }).catch((erro) =>{
 //     console.log('erro ao sync tabelas '+erro)
 // })
 

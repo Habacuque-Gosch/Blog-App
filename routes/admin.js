@@ -26,7 +26,7 @@ router.get('/categorias', (req, res) => {
     })
 })
 
-router.all('/add-categoria', (req,res) => {
+router.all('/add-categoria', (req, res) => {
 
     if (req.method == 'POST'){
 
@@ -48,15 +48,11 @@ router.all('/add-categoria', (req,res) => {
                 slug: slug_categoria
             }).then(() => {
                 req.flash('success_msg', 'categoria criada com sucesso')
-                console.log('log categoria criada com sucesso')
-                return res.redirect('/admin/categorias')
+                res.redirect('/admin/categorias')
             }).catch((erro) => {
                 req.flash('error_msg', 'erro ao criar categoria')
                 res.redirect('/admin/add-categoria')
             })
-
-            console.log(nome_categoria)
-            console.log(slug_categoria)
     
             // new Categoria({
             //     nome: nome_categoria,
