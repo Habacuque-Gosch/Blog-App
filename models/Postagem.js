@@ -1,7 +1,7 @@
 const db = require('./db')
 
 
-const Categoria = db.sequelize.define('categorias',{
+const Postagem = db.sequelize.define('postagens',{
     nome: {
         type: db.Sequelize.STRING
     },
@@ -28,4 +28,4 @@ const Categoria = db.sequelize.define('categorias',{
 // })
 
 
-module.exports = Categoria
+module.exports = Postagem
