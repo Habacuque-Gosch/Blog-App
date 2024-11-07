@@ -127,50 +127,61 @@ router.get('/postagens', (req, res) => {
 
 
 router.all('/add-postagens', (req, res) => {
+    
+    Categoria.findAll({order: [['id', 'DESC']]}).then(function(categorias){
 
-    if (req.method == 'POST'){
+        if (req.method == 'POST'){
 
-        var nome_postagem = req.body.titulo
-        var slug_postagem = req.body.slug
-        var descricao_postagem = req.body.descricao
-        var conteudo_postagem = req.body.conteudo
-
-        if(!nome_postagem || typeof nome_postagem == undefined || nome_postagem == null) {
-            req.flash('error_msg', 'Nome inválido')
-            res.redirect('/admin/add-postagens')
-        }
-
-        if(!slug_postagem || typeof slug_postagem == undefined || slug_postagem == null) {
-            req.flash('error_msg', 'Slug inválido')
-            res.redirect('/admin/add-postagens')
-        }
-
-        if(!descricao_postagem || typeof descricao_postagem == undefined || descricao_postagem == null) {
-            req.flash('error_msg', 'Descrição inválido')
-            res.redirect('/admin/add-postagens')
-        }
-        
-        if(!conteudo_postagem || typeof conteudo_postagem == undefined || conteudo_postagem == null) {
-            req.flash('error_msg', 'Conteudo inválido')
-            res.redirect('/admin/add-postagens')
-        } else {
-
-            Postagem.create({
-                titulo: nome_categoria,
-                slug: slug_categoria
-            }).then(() => {
-                req.flash('success_msg', 'categoria criada com sucesso')
-                // res.redirect('/admin/categorias')
-            }).catch((erro) => {
-                req.flash('error_msg', 'erro ao criar categoria')
+            var nome_postagem = req.body.titulo
+            var slug_postagem = req.body.slug
+            var descricao_postagem = req.body.descricao
+            var conteudo_postagem = req.body.conteudo
+            var categoria_postagem = req.body.categoria
+    
+            if(!nome_postagem || typeof nome_postagem == undefined || nome_postagem == null) {
+                req.flash('error_msg', 'Nome inválido')
                 res.redirect('/admin/add-postagens')
-            })
-
+            }
+    
+            if(!slug_postagem || typeof slug_postagem == undefined || slug_postagem == null) {
+                req.flash('error_msg', 'Slug inválido')
+                res.redirect('/admin/add-postagens')
+            }
+    
+            if(!descricao_postagem || typeof descricao_postagem == undefined || descricao_postagem == null) {
+                req.flash('error_msg', 'Descrição inválido')
+                res.redirect('/admin/add-postagens')
+            }
+            
+            if(!conteudo_postagem || typeof conteudo_postagem == undefined || conteudo_postagem == null) {
+                req.flash('error_msg', 'Conteudo inválido')
+                res.redirect('/admin/add-postagens')
+            } else {
+    
+                Postagem.create({
+                    titulo: nome_categoria,
+                    slug: slug_categoria,
+                    descricao: descricao_postagem,
+                    conteudo: conteudo_postagem,
+                    categoria: categoria_postagem
+                }).then(() => {
+                    req.flash('success_msg', 'categoria criada com sucesso')
+                    // res.redirect('/admin/categorias')
+                }).catch((erro) => {
+                    req.flash('error_msg', 'erro ao criar categoria')
+                    res.redirect('/admin/add-postagens')
+                })
+    
+            }
+    
         }
 
-    }
+        res.render('admin/addpostagens', {categorias: categorias})
 
-    res.render('admin/addpostagens')
+    }).catch((error) => {
+        req.flash('error_msg', 'houve um erro ao carregar as categorias')
+        res.redirect('/admin')
+    })
 })
 
 module.exports = router
