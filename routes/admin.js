@@ -125,7 +125,6 @@ router.get('/postagens', (req, res) => {
     })
 })
 
-
 router.all('/add-postagens', (req, res) => {
     
     Categoria.findAll({order: [['id', 'DESC']]}).then(function(categorias){
@@ -137,42 +136,28 @@ router.all('/add-postagens', (req, res) => {
             var descricao_postagem = req.body.descricao
             var conteudo_postagem = req.body.conteudo
             var categoria_postagem = req.body.categoria
-    
-            if(!nome_postagem || typeof nome_postagem == undefined || nome_postagem == null) {
-                req.flash('error_msg', 'Nome inválido')
+
+            console.log('id categoria: ' +categoria_postagem)
+
+            // var categoria_select = Postagem.belongsTo(Categoria)
+
+            Postagem.create({
+                titulo: nome_postagem,
+                slug: slug_postagem,
+                descricao: descricao_postagem,
+                conteudo: conteudo_postagem,
+                }, 
+                {
+                    include: [categoria_postagem],
+                },
+            ).then(() => {
+                console.log('success create post')
+                req.flash('success_msg', 'categoria criada com sucesso')
+                res.redirect('/admin/categorias')
+            }).catch((erro) => {
+                req.flash('error_msg', 'erro ao criar categoria: ' +erro)
                 res.redirect('/admin/add-postagens')
-            }
-    
-            if(!slug_postagem || typeof slug_postagem == undefined || slug_postagem == null) {
-                req.flash('error_msg', 'Slug inválido')
-                res.redirect('/admin/add-postagens')
-            }
-    
-            if(!descricao_postagem || typeof descricao_postagem == undefined || descricao_postagem == null) {
-                req.flash('error_msg', 'Descrição inválido')
-                res.redirect('/admin/add-postagens')
-            }
-            
-            if(!conteudo_postagem || typeof conteudo_postagem == undefined || conteudo_postagem == null) {
-                req.flash('error_msg', 'Conteudo inválido')
-                res.redirect('/admin/add-postagens')
-            } else {
-    
-                Postagem.create({
-                    titulo: nome_categoria,
-                    slug: slug_categoria,
-                    descricao: descricao_postagem,
-                    conteudo: conteudo_postagem,
-                    categoria: categoria_postagem
-                }).then(() => {
-                    req.flash('success_msg', 'categoria criada com sucesso')
-                    // res.redirect('/admin/categorias')
-                }).catch((erro) => {
-                    req.flash('error_msg', 'erro ao criar categoria')
-                    res.redirect('/admin/add-postagens')
-                })
-    
-            }
+            })
     
         }
 
@@ -184,4 +169,40 @@ router.all('/add-postagens', (req, res) => {
     })
 })
 
+router.all('/edit-postagem/:id', (req,res) => {
+    id = req.params.id
+
+    Postagem.findOne({where: {'id':id}}).then((postagem) => {
+
+        if(req.method == 'POST'){
+
+            var nome_postagem = req.body.titulo
+            var slug_postagem = req.body.slug
+            var descricao_postagem = req.body.descricao
+            var conteudo_postagem = req.body.conteudo
+            var categoria_postagem = req.body.categoria
+
+            postagem.titulo = nome_postagem,
+            postagem.slug = slug_postagem,
+            postagem.descricao = descricao_postagem,
+            postagem.conteudo = conteudo_postagem,
+            postagem.categoria = categoria_postagem
+
+            postagem.save().then(() => {
+                req.flash('success_msg', 'postagem editada com sucesso')
+                res.redirect('/admin/postagens')
+            }).catch((erro) => {
+                req.flash('error_msg', 'erro ao editar essa postagem')
+                res.redirect('/admin/postagens')
+            })
+
+        }
+
+        res.render('admin/edit_postagem', {postagem: postagem})
+
+    }).catch((erro) => {
+        req.flash('error_msg', 'Essa postagem não existe')
+        res.redirect('/admin/postagens')
+    })
+})
 module.exports = router
