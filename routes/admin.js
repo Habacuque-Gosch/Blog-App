@@ -188,7 +188,7 @@ router.all('/edit-postagem/:id', (req,res) => {
             postagem.slug = slug_postagem,
             postagem.descricao = descricao_postagem,
             postagem.conteudo = conteudo_postagem,
-            postagem.categoria = categoria_postagem
+            postagem.categoriaId = categoria_postagem
 
             postagem.save().then(() => {
                 req.flash('success_msg', 'postagem editada com sucesso')
