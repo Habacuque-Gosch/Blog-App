@@ -66,22 +66,22 @@ const Postagem = require('./models/Postagem')
         })
     })
 
-    app.use('/admin', admin)
+    // app.use('/admin', admin)
 
-    app.use((req, res, next) => {
-        res.status(404)
-        res.render('erros/404')
-    });
+    // app.use((req, res, next) => {
+    //     res.status(404)
+    //     res.render('erros/404')
+    // });
       
-    app.use((req, res, next) => {
-        res.status(403)
-        res.render('erros/403')
-    });
+    // app.use((req, res, next) => {
+    //     res.status(403)
+    //     res.render('erros/403')
+    // });
       
-    app.use((req, res, next) => {
-        res.status(500)
-        res.render('erros/500')
-    });
+    // app.use((req, res, next) => {
+    //     res.status(500)
+    //     res.render('erros/500')
+    // });
 
 // Server
 const PORT = 8081
