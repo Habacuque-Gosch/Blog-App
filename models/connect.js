@@ -1,14 +1,14 @@
-const mongoose = require('mongoose')
-const Categoria = require('./Categoria')
-const Schema = mongoose.Schema
+// const mongoose = require('mongoose')
+// const Categoria = require('./Categoria')
+// const Schema = mongoose.Schema
 
-// Config Mongoose
-    mongoose.Promise = global.Promise
-    mongoose.connect('mongodb://localhost/blogapp').then(() =>{
-        console.log('MongoDB conectado')
-    }).catch((erro) =>{
-        console.log('houveum erro ao se conectar ao mongoDB ' +erro)
-    })
+// // Config Mongoose
+//     mongoose.Promise = global.Promise
+//     mongoose.connect('mongodb://localhost/blogapp').then(() =>{
+//         console.log('MongoDB conectado')
+//     }).catch((erro) =>{
+//         console.log('houveum erro ao se conectar ao mongoDB ' +erro)
+//     })
 
 // Model - Usuarios
 //     const UsuarioSchema = mongoose.Schema({
@@ -70,33 +70,33 @@ const Schema = mongoose.Schema
 
 // Model - Postagens
     
-    const PostagemSchema = mongoose.Schema({
-        titulo: {
-            type: String,
-            require: true
-        },
-        slug: {
-            type: String,
-            require: true
-        },
-        descricao: {
-            type: String,
-            require: true
-        },
-        conteudo: {
-            type: String,
-            require: true
-        },
-        categoria: {
-            type: Schema.Types.ObjectId,
-            ref: Categoria
-        },
-        date: {
-            type: Date,
-            default: Date.now()
-        }
-    }
-    )
+    // const PostagemSchema = mongoose.Schema({
+    //     titulo: {
+    //         type: String,
+    //         require: true
+    //     },
+    //     slug: {
+    //         type: String,
+    //         require: true
+    //     },
+    //     descricao: {
+    //         type: String,
+    //         require: true
+    //     },
+    //     conteudo: {
+    //         type: String,
+    //         require: true
+    //     },
+    //     categoria: {
+    //         type: Schema.Types.ObjectId,
+    //         ref: Categoria
+    //     },
+    //     date: {
+    //         type: Date,
+    //         default: Date.now()
+    //     }
+    // }
+    // )
     
 
     // Collection
