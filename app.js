@@ -37,7 +37,7 @@ const Postagem = require('./models/Postagem')
         },
     })))
     app.set('view engine', 'handlebars')
-    app.set('views', __dirname + '/../views');
+    app.set('views', __dirname + '/views');
 
     // Body Parser
     // app.use(bodyParser.json())
