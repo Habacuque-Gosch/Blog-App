@@ -7,6 +7,7 @@ const admin = require('./routes/admin')
 const path = require('path')
 const session = require('express-session')
 const flash = require('connect-flash')
+const Postagem = require('./models/Postagem')
 
 
 
@@ -56,7 +57,13 @@ const flash = require('connect-flash')
 // Routers
 
     app.get('/', (req, res) => {
-        res.render('blog/index')
+        Postagem.findAll({order: [['id', 'DESC']]}).then((postagens) => {
+            res.render('blog/index', {postagens: postagens})
+
+        }).catch((error) => {
+            req.flash('error_msg', 'houve um erro ao carregar as postagens: ' +error)
+            res.redirect('/')
+        })
     })
 
     app.use('/admin', admin)

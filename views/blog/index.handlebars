@@ -1,1 +1,23 @@
-<h1>pagina inicial da aplicação</h1>
+<h1>Bem-Vindo(a)</h1>
+<h2>Postagens</h2>
+<hr>
+
+{{#each postagens}}
+
+    <div class="card">
+        <div class="card-body">
+            <p>Titulo: {{titulo}}</p>
+            <small>Slug: {{slug}}</small>
+            <p>Descrição: {{descricao}}</p>
+            <p>{{conteudo}}</p>
+            <p>Categoria: {{categoriaId}}</p>
+            <br>
+            <a href=""><button class="btn btn-success mt-2">Salvar Postagem <i class="bi bi-bookmark-plus"></i></button></a>
+            <a href=""><button class="btn btn-primary mt-2">Curtir Postagem <i class="bi bi-bookmark-plus"></i></button></a>
+        </div>
+    </div>
+    <br>
+
+{{else}}
+    <h4>Nenhuma postagem encontrada</h4>
+{{/each}}

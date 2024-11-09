@@ -1,6 +1,6 @@
 <h2>Lista de categorias</h2>
 <hr>
-<a href="/admin/add-categoria"><button class="btn btn-success mb-4">Adicionar nova categoria</button></a>
+<a href="/admin/add-categoria"><button class="btn btn-success mb-4">Adicionar nova categoria <i class="bi bi-plus-circle"></i></button></a>
 {{#each categorias}}
 
     <div class="card">
@@ -9,8 +9,8 @@
             <small>Slug: {{slug}}</small>
             <p>postagens: {{postagens}}</p>
             <br>
-            <a href="/admin/edit-categoria/{{id}}"><button class="btn btn-success mt-2">Editar Categoria</button></a>
-            <a href="/admin/delete-categoria/{{id}}"><button class="btn btn-danger mt-2">Deletar Categoria</button></a>
+            <a href="/admin/edit-categoria/{{id}}"><button class="btn btn-success mt-2">Editar Categoria <i class="bi bi-pencil"></i></button></a>
+            <a href="/admin/delete-categoria/{{id}}"><button class="btn btn-danger mt-2">Deletar Categoria <i class="bi bi-trash"></i></button></a>
         </div>
     </div>
     <br>

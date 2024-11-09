@@ -118,9 +118,6 @@ router.get('/delete-categoria/:id', (req, res) => {
 
 router.get('/postagens', (req, res) => {
     Postagem.findAll({order: [['id', 'DESC']]}).then(function(postagens){
-        console.log(postagens)
-
-
 
         res.render('admin/postagens', {postagens: postagens})
     }).catch((error) => {
