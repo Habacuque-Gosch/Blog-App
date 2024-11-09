@@ -28,7 +28,7 @@ const Postagem = db.sequelize.define('postagens',{
 )
 
 Postagem.belongsTo(Categoria)
-Categoria.belongsTo(Postagem)
+// Categoria.belongsTo(Postagem)
 
 // SYNC MODEL
 // Postagem.sync({force: true}).then(() =>{
