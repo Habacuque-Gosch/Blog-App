@@ -18,10 +18,10 @@ router.get('/categorias', (req, res) => {
     //     req.flash('error_msg', 'houve um erro ao carregar as categorias')
     // })
 
-    Categoria.findAll({order: [['id', 'DESC']]}).then(function(categorias){
+    Categoria.findAll({order: [['id', 'DESC']]}).then((categorias) => {
         res.render('admin/categorias', {categorias: categorias})
     }).catch((error) => {
-        req.flash('error_msg', 'houve um erro ao carregar as categorias')
+        req.flash('error_msg', 'houve um erro ao carregar as categorias '+error)
         res.redirect('/admin')
     })
 })
@@ -118,6 +118,10 @@ router.get('/delete-categoria/:id', (req, res) => {
 
 router.get('/postagens', (req, res) => {
     Postagem.findAll({order: [['id', 'DESC']]}).then(function(postagens){
+        console.log(postagens)
+
+
+
         res.render('admin/postagens', {postagens: postagens})
     }).catch((error) => {
         req.flash('error_msg', 'houve um erro ao carregar as postagens')
@@ -146,10 +150,8 @@ router.all('/add-postagens', (req, res) => {
                 slug: slug_postagem,
                 descricao: descricao_postagem,
                 conteudo: conteudo_postagem,
-                }, 
-                {
-                    include: [categoria_postagem],
-                },
+                categoriaId: categoria_postagem
+                }
             ).then(() => {
                 console.log('success create post')
                 req.flash('success_msg', 'categoria criada com sucesso')
