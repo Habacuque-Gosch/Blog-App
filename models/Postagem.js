@@ -1,4 +1,3 @@
-const { Schema } = require('mongoose')
 const Categoria = require('./Categoria')
 const db = require('./db')
 
