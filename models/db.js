@@ -1,6 +1,6 @@
 // Connnet DB
 const Sequelize = require('sequelize');
-const sequelize = new Sequelize('postgresql://blogapp_owner:UrGvQxS15gbj@ep-soft-brook-a5ns113b.us-east-2.aws.neon.tech/blogapp?sslmode=require', {dialect: 'postgres'});
+const sequelize = new Sequelize('postgresql://blogapp_owner:UrGvQxS15gbj@ep-soft-brook-a5ns113b.us-east-2.aws.neon.tech/blogapp?sslmode=require', {dialect: require('pg')});
      
 
 sequelize.authenticate().then(function(){
