@@ -173,6 +173,8 @@ router.all('/edit-postagem/:id', (req,res) => {
 
     Postagem.findOne({where: {'id':id}}).then((postagem) => {
 
+        // Categoria.findAll({order: [['id', 'DESC']]}).then((categorias) => {
+
         if(req.method == 'POST'){
 
             var nome_postagem = req.body.titulo
@@ -204,4 +206,17 @@ router.all('/edit-postagem/:id', (req,res) => {
         res.redirect('/admin/postagens')
     })
 })
+
+router.get('/delete-postagem/:id', (req, res) => {
+    var id_post = req.params.id
+    Postagem.destroy({where: {'id': id_post}}).then(() => {
+        req.flash('success_msg', 'Postagem deletada com sucesso')
+        res.redirect('/admin/postagens')
+    }).catch((erro) => {
+        req.flash('error_msg', 'Essa postagem não existe')
+        res.redirect('/admin/postagens')
+    })
+})
+
+
 module.exports = router

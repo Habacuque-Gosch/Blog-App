@@ -3,7 +3,7 @@
 
     <div class="card-body">
 
-        <form class="" action="/admin/add-postagens" method="post">
+        <form class="" action="/admin/edit-postagem/{{id}}" method="post">
 
             <label for="titulo">titulo: </label>
             <input type="text" value="{{postagem.titulo}}" name="titulo" id="titulo" placeholder="titulo da categoria" class="form-control" required>
@@ -20,6 +20,9 @@
             <label for="slug">Selecione a categoria: </label>
             <select name="categoria" id="categoria" class="form-control" required>
                 {{#each categorias}}
+                    {{#if postagem.categoria.nome}}
+                        <option value="{{postagem.categoria.id}}">{{postagem.categoria.nome}}</option>
+                    {{/if}}
                     <option value="{{id}}">{{nome}}</option>
                 {{else}}
                     <option value="0">nenhuma categoria registrada</option>
