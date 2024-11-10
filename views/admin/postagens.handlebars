@@ -1,6 +1,11 @@
-<h2>Lista de postagens</h2>
-<hr>
+<div class="input-group mb-3">
+  <input type="text" class="form-control" placeholder="Pesquise pelo título, categoria ou descrição de um post" aria-label="Recipient's username" aria-describedby="button-addon2">
+  <button class="btn btn-outline-secondary" type="button" id="button-addon2">Buscar</button>
+</div>
 <a href="/admin/add-postagens"><button class="btn btn-success mb-4">Adicionar nova postagem <i class="bi bi-plus-circle"></i></button></a>
+<hr>
+
+<h2>Lista de postagens</h2>
 
 {{#each postagens}}
 
