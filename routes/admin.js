@@ -151,9 +151,9 @@ router.all('/add-postagens', (req, res) => {
                 res.redirect('/admin/add-postagens')
             })
     
+        } else {
+            res.render('admin/addpostagens', {categorias: categorias})
         }
-
-        res.render('admin/addpostagens', {categorias: categorias})
 
     }).catch((error) => {
         req.flash('error_msg', 'houve um erro ao carregar as categorias')
@@ -190,16 +190,17 @@ router.all('/edit-postagem/:id', (req,res) => {
             postagem.save().then(() => {
                 console.log('postagem editada com sucesso')
                 req.flash('success_msg', 'postagem editada com sucesso')
-                // res.redirect('/admin/postagens')
+                res.redirect('/admin/postagens')
             }).catch((erro) => {
                 req.flash('error_msg', 'erro ao editar essa postagem')
                 console.log(erro)
                 res.redirect('/admin/postagens')
             })
 
+        } else {
+            res.render('admin/edit_postagem', {postagem: postagem, categorias:categorias})
         }
 
-        res.render('admin/edit_postagem', {postagem: postagem, categorias:categorias})
     })
 
     }).catch((erro) => {
