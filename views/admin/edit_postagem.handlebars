@@ -16,12 +16,9 @@
 
             <label for="slug">Conteudo: </label>
             <textarea name="conteudo" id="conteudo" placeholder="Conteudo da categoria" class="form-control" required>{{postagem.conteudo}}</textarea>
-
             <label for="slug">Selecione a categoria: </label>
             <select name="categoria" id="categoria" class="form-control" required>
-                {{#if postagem.categoria.nome}}
-                    <option value="{{postagem.categoria.id}}">{{postagem.categoria.nome}}</option>
-                {{/if}}
+                <option value="{{postagem.categoria.id}}">{{postagem.categoria.nome}}</option>
                 {{#each categorias}}
                     <option value="{{id}}">{{nome}}</option>
                 {{else}}
