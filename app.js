@@ -59,10 +59,10 @@ const Categoria = require('./models/Categoria')
 // Routers
 
     app.get('/', (req, res) => {
-        Postagem.findAll({include: [{
+        Postagem.findAll({order: [['id', 'DESC']]}, {include: [{
             model: Categoria,
             as: 'categoria'
-        }]}, {order: [['id', 'DESC']]}).then((postagens) => {
+        }]}).then((postagens) => {
 
             res.render('blog/index', {postagens: postagens})
 
