@@ -12,11 +12,6 @@ router.get('/', (req, res) => {
 })
 
 router.get('/categorias', (req, res) => {
-    // Categoria.find().sort({date: 'desc'}).then((categorias) => {
-    //     res.render('admin/categorias', {categorias:categorias})
-    // }).catch((error) => {
-    //     req.flash('error_msg', 'houve um erro ao carregar as categorias')
-    // })
 
     Categoria.findAll({order: [['id', 'DESC']]}).then((categorias) => {
         res.render('admin/categorias', {categorias: categorias})
@@ -74,13 +69,11 @@ router.all('/add-categoria', (req, res) => {
 
 router.all('/edit-categoria/:id', (req, res) => {
 
-    var id = req.params.id
+    var id_categoria = req.params.id
 
-    Categoria.findOne({where: {'id' : id}}).then((categoria) => {
+    Categoria.findOne({where: {'id' : id_categoria}}).then((categoria) => {
 
         if (req.method == 'POST'){
-
-            console.log(categoria)
             
             var nome_categoria = req.body.nome
             var slug_categoria = req.body.slug
@@ -117,7 +110,10 @@ router.get('/delete-categoria/:id', (req, res) => {
 })
 
 router.get('/postagens', (req, res) => {
-    Postagem.findAll({order: [['id', 'DESC']]}).then(function(postagens){
+    Postagem.findAll({order: [['id', 'DESC']]},{include: [{
+        model: Categoria,
+        as: 'categoria'
+    }]}).then((postagens) => {
 
         res.render('admin/postagens', {postagens: postagens})
     }).catch((error) => {
@@ -128,7 +124,8 @@ router.get('/postagens', (req, res) => {
 
 router.all('/add-postagens', (req, res) => {
     
-    Categoria.findAll({order: [['id', 'DESC']]}).then(function(categorias){
+    Categoria.findAll({order: [['id', 'DESC']]}).then((categorias) => {
+        
 
         if (req.method == 'POST'){
 
@@ -137,10 +134,6 @@ router.all('/add-postagens', (req, res) => {
             var descricao_postagem = req.body.descricao
             var conteudo_postagem = req.body.conteudo
             var categoria_postagem = req.body.categoria
-
-            console.log('id categoria: ' +categoria_postagem)
-
-            // var categoria_select = Postagem.belongsTo(Categoria)
 
             Postagem.create({
                 titulo: nome_postagem,
@@ -151,16 +144,16 @@ router.all('/add-postagens', (req, res) => {
                 }
             ).then(() => {
                 console.log('success create post')
-                req.flash('success_msg', 'categoria criada com sucesso')
-                res.redirect('/admin/categorias')
+                req.flash('success_msg', 'Postagem criada com sucesso')
+                res.redirect('/admin/postagens')
             }).catch((erro) => {
                 req.flash('error_msg', 'erro ao criar categoria: ' +erro)
                 res.redirect('/admin/add-postagens')
             })
     
+        } else {
+            res.render('admin/addpostagens', {categorias: categorias})
         }
-
-        res.render('admin/addpostagens', {categorias: categorias})
 
     }).catch((error) => {
         req.flash('error_msg', 'houve um erro ao carregar as categorias')
@@ -169,9 +162,14 @@ router.all('/add-postagens', (req, res) => {
 })
 
 router.all('/edit-postagem/:id', (req,res) => {
-    id = req.params.id
+    var id_post = req.params.id
 
-    Postagem.findOne({where: {'id':id}}).then((postagem) => {
+    Postagem.findOne({include: [{
+        model: Categoria,
+        as: 'categoria'
+    }]}, {where: {'id': id_post}}).then((postagem) => {
+
+    Categoria.findAll({order: [['id', 'DESC']]}).then((categorias) => {
 
         // Categoria.findAll({order: [['id', 'DESC']]}).then((categorias) => {
 
@@ -189,17 +187,23 @@ router.all('/edit-postagem/:id', (req,res) => {
             postagem.conteudo = conteudo_postagem,
             postagem.categoriaId = categoria_postagem
 
+            console.log('id categoria do post' +categoria_postagem)
+
             postagem.save().then(() => {
+                console.log('postagem editada com sucesso')
                 req.flash('success_msg', 'postagem editada com sucesso')
                 res.redirect('/admin/postagens')
             }).catch((erro) => {
                 req.flash('error_msg', 'erro ao editar essa postagem')
+                console.log(erro)
                 res.redirect('/admin/postagens')
             })
 
+        } else {
+            res.render('admin/edit_postagem', {postagem: postagem, categorias:categorias})
         }
 
-        res.render('admin/edit_postagem', {postagem: postagem})
+    })
 
     }).catch((erro) => {
         req.flash('error_msg', 'Essa postagem não existe')
@@ -219,4 +223,8 @@ router.get('/delete-postagem/:id', (req, res) => {
 })
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> f63db8254df153ef1b8e44e699049728b6a38db2
 module.exports = router

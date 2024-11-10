@@ -6,18 +6,18 @@
         <form class="" action="/admin/add-postagens" method="post">
 
             <label for="titulo">titulo: </label>
-            <input type="text" name="titulo" id="titulo" placeholder="titulo da categoria" class="form-control" required>
+            <input type="text" name="titulo" id="titulo" placeholder="título da postagem" class="form-control" required>
                 
             <label for="slug">Slug: </label>
-            <input type="text" name="slug" id="slug" placeholder="slug da categoria" class="form-control" required>
+            <input type="text" name="slug" id="slug" placeholder="slug da postagem" class="form-control" required>
 
-            <label for="slug">Descrição: </label>
-            <input type="text" name="descricao" id="descricao" placeholder="slug da categoria" class="form-control" required>
+            <label for="descricao">Descrição: </label>
+            <input type="text" name="descricao" id="descricao" placeholder="Descrição da postagem" class="form-control" required>
 
-            <label for="slug">Conteudo: </label>
-            <textarea name="conteudo" id="conteudo" placeholder="slug da categoria" class="form-control" required></textarea>
+            <label for="conteudo">Conteudo: </label>
+            <textarea name="conteudo" id="conteudo" placeholder="Conteúdo da postagem" class="form-control" required></textarea>
 
-            <label for="slug">Selecione a categoria: </label>
+            <label for="categoria">Selecione a categoria: </label>
             <select name="categoria" id="categoria" class="form-control" required>
                 {{#each categorias}}
                     <option value="{{id}}">{{nome}}</option>

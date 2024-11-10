@@ -1,6 +1,10 @@
-<h1>Bem-Vindo(a)</h1>
-<h2>Postagens</h2>
+<h1>Bem vindo(a)</h1>
+<div class="input-group mb-3">
+  <input type="text" class="form-control" placeholder="Pesquise pelo título, categoria ou descrição de um post" aria-label="Recipient's username" aria-describedby="button-addon2">
+  <button class="btn btn-outline-secondary" type="button" id="button-addon2">Buscar</button>
+</div>
 <hr>
+<h2>Postagens</h2>
 
 {{#each postagens}}
 
@@ -9,11 +13,11 @@
             <p>Titulo: {{titulo}}</p>
             <small>Slug: {{slug}}</small>
             <p>Descrição: {{descricao}}</p>
-            <p>{{conteudo}}</p>
-            <p>Categoria: {{categoriaId}}</p>
+            <p>Conteúdo: {{conteudo}}</p>
+            <p>Categoria: {{categoria.nome}}</p>
             <br>
             <a href=""><button class="btn btn-success mt-2">Salvar Postagem <i class="bi bi-bookmark-plus"></i></button></a>
-            <a href=""><button class="btn btn-primary mt-2">Curtir Postagem <i class="bi bi-bookmark-plus"></i></button></a>
+            <a href=""><button class="btn btn-primary mt-2">Curtir Postagem <i class="bi bi-suit-heart"></i></button></a>
         </div>
     </div>
     <br>

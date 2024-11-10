@@ -3,7 +3,7 @@
 
     <div class="card-body">
 
-        <form class="" action="/admin/edit-categoria/{{categoria._id}}" method="post">
+        <form class="" action="/admin/edit-categoria/{{categoria.id}}" method="post">
         
             <label for="nome">Nome: </label>
                 <input type="text" name="nome" id="nome" placeholder="nome da categoria" class="form-control" value="{{categoria.nome}}">
@@ -13,7 +13,7 @@
     
             <br>
 
-            <button class="btn btn-success">Editar categoria</button>
+            <button class="btn btn-success">Salvar alterações</button>
 
         </form>
 
