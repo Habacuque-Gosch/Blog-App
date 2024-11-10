@@ -107,10 +107,11 @@ router.get('/delete-categoria/:id', (req, res) => {
 })
 
 router.get('/postagens', (req, res) => {
-    Postagem.findAll({include: [{
+    Postagem.findAll({order: [['id', 'DESC']]}
+        ,{include: [{
         model: Categoria,
         as: 'categoria'
-        }]}, {order: [['id', 'DESC']]}).then((postagens) => {
+        }]}).then((postagens) => {
 
         res.render('admin/postagens', {postagens: postagens})
     }).catch((erro) => {
