@@ -195,7 +195,7 @@ router.all('/edit-postagem/:id', (req,res) => {
 
             // Categoria.findAll().then((categorias) => {
 
-            res.render('admin/edit_postagem', {postagem: postagem, categorias: categorias})
+            res.render('admin/edit_postagem', {postagem: postagem})
 
             // }).catch((erro) => {
             //     req.flash('error_msg', 'Erro ao carregar as categorias')
