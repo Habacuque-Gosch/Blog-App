@@ -8,6 +8,7 @@ const path = require('path')
 const session = require('express-session')
 const flash = require('connect-flash')
 const Postagem = require('./models/Postagem')
+const Categoria = require('./models/Categoria')
 
 
 
@@ -58,7 +59,11 @@ const Postagem = require('./models/Postagem')
 // Routers
 
     app.get('/', (req, res) => {
-        Postagem.findAll({order: [['id', 'DESC']]}).then((postagens) => {
+        Postagem.findAll({include: [{
+            model: Categoria,
+            as: 'categoria'
+        }]}, {order: [['id', 'DESC']]}).then((postagens) => {
+
             res.render('blog/index', {postagens: postagens})
 
         }).catch((error) => {
