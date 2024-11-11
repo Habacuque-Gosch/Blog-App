@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const Categoria = require('../models/Categoria')
 const Postagem = require('../models/Postagem')
-// const { Op } = require('sequelize');
+
 
 
 
