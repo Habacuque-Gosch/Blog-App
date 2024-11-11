@@ -141,15 +141,16 @@ router.all('/add-postagens', (req, res) => {
             ).then(() => {
                 console.log('success create post')
                 req.flash('success_msg', 'categoria criada com sucesso')
-                res.redirect('/admin/categorias')
+                res.redirect('/admin/postagens')
             }).catch((erro) => {
                 req.flash('error_msg', 'erro ao criar categoria: ' +erro)
                 res.redirect('/admin/add-postagens')
             })
     
-        }
+        } else {
+            res.render('admin/addpostagens', {categorias: categorias})
 
-        res.render('admin/addpostagens', {categorias: categorias})
+        }
 
     }).catch((error) => {
         req.flash('error_msg', 'houve um erro ao carregar as categorias')

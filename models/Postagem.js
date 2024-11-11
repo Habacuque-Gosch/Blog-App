@@ -12,11 +12,11 @@ const Postagem = db.sequelize.define('postagens',{
         require: true
     },
     descricao: {
-        type: db.Sequelize.STRING,
+        type: db.Sequelize.TEXT,
         require: true
     },
     conteudo: {
-        type: db.Sequelize.STRING,
+        type: db.Sequelize.TEXT,
         require: true
     },
     date: {
