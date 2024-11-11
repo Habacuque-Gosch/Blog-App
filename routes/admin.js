@@ -7,16 +7,10 @@ const Postagem = require('../models/Postagem')
 
 
 router.get('/', (req, res) => {
-    // console.log(Categoria)
     res.render('admin/')
 })
 
 router.get('/categorias', (req, res) => {
-    // Categoria.find().sort({date: 'desc'}).then((categorias) => {
-    //     res.render('admin/categorias', {categorias:categorias})
-    // }).catch((error) => {
-    //     req.flash('error_msg', 'houve um erro ao carregar as categorias')
-    // })
 
     Categoria.findAll({order: [['id', 'DESC']]}).then((categorias) => {
         res.render('admin/categorias', {categorias: categorias})
