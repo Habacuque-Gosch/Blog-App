@@ -44,15 +44,6 @@ const Categoria = require('./models/Categoria')
     // app.use(bodyParser.json())
     app.use(bodyParser.urlencoded({ extended: false }));
 
-    // mongoose
-    // const mongoose = require('mongoose')
-    // mongoose.Promise = global.Promise
-    // mongoose.connect('mongodb://localhost/blogapp').then(() =>{
-    //     console.log('MongoDB conectado')
-    // }).catch((erro) =>{
-    //     console.log('houveum erro ao se conectar ao mongoDB ' +erro)
-    // })
-
     // Public statics files
     app.use(express.static(path.join(__dirname,'public')))
 
@@ -60,7 +51,7 @@ const Categoria = require('./models/Categoria')
 
     app.get('/', (req, res) => {
         
-        Postagem.findAll({order: [['id', 'DESC']]},
+        Postagem.findAll(
             {include: [{
             model: Categoria,
             as: 'categoria'

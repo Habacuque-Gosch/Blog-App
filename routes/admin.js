@@ -107,13 +107,14 @@ router.get('/delete-categoria/:id', (req, res) => {
 })
 
 router.get('/postagens', (req, res) => {
-    Postagem.findAll({order: [['id', 'DESC']]}
-        ,{include: [{
-        model: Categoria,
-        as: 'categoria'
+    Postagem.findAll(
+        {include: [{
+            model: Categoria,
+            as: 'categoria'
         }]}).then((postagens) => {
 
         res.render('admin/postagens', {postagens: postagens})
+
     }).catch((erro) => {
         req.flash('error_msg', 'houve um erro ao carregar as postagens: ' +erro)
         res.redirect('/admin')
