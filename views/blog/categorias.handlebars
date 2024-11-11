@@ -1,0 +1,9 @@
+<h1>Categorias</h1>
+
+<ul class="list-group">
+
+{{#each categorias}}
+    {{!-- <li class="list-group-item active" aria-current="true">An active item</li> --}}
+    <a href="/categoria/{{slug}}"><li class="list-group-item">{{nome}}</li></a>
+{{/each}}
+</ul>

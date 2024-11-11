@@ -65,6 +65,40 @@ const Categoria = require('./models/Categoria')
         })
     })
 
+    app.get('/categorias/', (req, res) => {
+        Categoria.findAll({order: [['id', 'DESC']]}).then((categorias) => {
+            res.render('blog/categorias', {categorias: categorias})
+        }).catch((erro) => {
+            req.flash('error_msg', 'Erro interno ao carregar as categorias: '+erro)
+            res.render('blog/categorias')
+        })
+    })
+
+    app.get('/categoria/:slug', (req, res) => {
+        var slug = req.params.slug
+
+        Categoria.findOne({where: {'slug': slug}}).then((categoria) => {
+            if (categoria) {
+
+                Postagem.findAll({where: {'categoriaId': categoria.id}}).then((postagens) => {
+
+                    req.flash('success_msg','Busca feita com sucesso')
+                    res.render('blog/index', {postagens: postagens})
+                }).catch((erro) => {
+                    req.flash('error_msg','Postagens não encontrada: ' +erro)
+                    res.render('blog/index')
+                })
+
+            } else {
+                req.flash('error_msg', 'Categoria inexistente')
+                res.redirect('/')
+            }
+        }).catch((erro) => {
+            req.flash('error_msg', 'Erro ao carregar essa categoria: ' +erro)
+            res.redirect('/')
+        })
+    })
+
     app.use('/admin', admin)
 
     app.use((req, res, next) => {
