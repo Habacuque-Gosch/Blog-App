@@ -43,7 +43,7 @@ router.all('/add-categoria', (req, res) => {
                 slug: slug_categoria
             }).then(() => {
                 req.flash('success_msg', 'categoria criada com sucesso')
-                // res.redirect('/admin/categorias')
+                res.redirect('/admin/categorias')
             }).catch((erro) => {
                 req.flash('error_msg', 'erro ao criar categoria')
                 res.redirect('/admin/add-categoria')
