@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const Categoria = require('../models/Categoria')
 const Postagem = require('../models/Postagem')
+const { Op } = require('sequelize');
 
 
 
@@ -215,6 +216,27 @@ router.get('/delete-postagem/:id', (req, res) => {
         req.flash('error_msg', 'Essa postagem não existe')
         res.redirect('/admin/postagens')
     })
+})
+
+router.post('/buscar-postagem/', (req, res) => {
+
+    var palavra_a_buscar = req.body.palavra
+
+    Postagem.findAll({where: {
+        titulo: {[Op.like] : palavra_a_buscar}
+    }}, {include: [{
+        model: Categoria,
+        as: 'categoria'
+        }]}).then((postagens) => {
+            req.flash('success_msg','Busca feita com sucesso')
+            res.render('blog/index', {postagens: postagens})
+
+        }).catch((erro) => {
+            req.flash('error_msg','Postagem não encontrada')
+            res.render('blog/index')
+
+        })
+    
 })
 
 
