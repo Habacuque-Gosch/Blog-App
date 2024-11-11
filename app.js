@@ -4,6 +4,7 @@ const app = express()
 const handlebars = require('express-handlebars')
 const bodyParser = require('body-parser')
 const admin = require('./routes/admin')
+const users = require('./routes/usuario')
 const path = require('path')
 const session = require('express-session')
 const flash = require('connect-flash')
@@ -100,6 +101,8 @@ const Categoria = require('./models/Categoria')
     })
 
     app.use('/admin', admin)
+
+    app.use('/users/', users)
 
     app.use((req, res, next) => {
         res.status(404)
