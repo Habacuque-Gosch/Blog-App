@@ -223,7 +223,7 @@ router.post('/buscar-postagem/', (req, res) => {
     var palavra_a_buscar = req.body.palavra
 
     Postagem.findAll({where: {
-        titulo: {[Op.like] : palavra_a_buscar}
+        titulo: {[Op.regexp] : palavra_a_buscar}
     }}, {include: [{
         model: Categoria,
         as: 'categoria'
