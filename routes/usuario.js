@@ -28,6 +28,18 @@ router.all('/login', (req, res) => {
     }
 })
 
+router.all('/register', (req, res) => {
+    if (req.method == 'post') {
+        console.log('post')
+
+    } else {
+
+        res.render('users/register')
+    }
+})
+
+
+
 module.exports = router
 
 
