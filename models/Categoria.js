@@ -12,11 +12,11 @@ const Categoria = db.sequelize.define('categorias',{
 )
 
 // SYNC MODEL
-// Categoria.sync({force: true}).then(function(){
-//     console.log('Model postagem criado com sucesso')
-// }).catch(function(erro){
-//     console.log('erro ao sync tabelas '+erro)
-// })
+Categoria.sync({force: true}).then(function(){
+    console.log('Model postagem criado com sucesso')
+}).catch(function(erro){
+    console.log('erro ao sync tabelas '+erro)
+})
 
 // Postagem.create({
 //     nome: "teste js code",
