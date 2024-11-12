@@ -5,6 +5,8 @@ const Postagem = require('../models/Postagem')
 const User = require('../models/Usuario')
 const { Op } = require('sequelize');
 const bcrypt = require('bcryptjs')
+const passport = require('passport')
+
 
 
 
@@ -20,14 +22,45 @@ router.all('/', (req, res) => {
 })
 
 router.all('/login', (req, res) => {
-    
-    if (req.method == 'POST') {
-        console.log('post')
 
-    } else {
+    // console.log(req.session)
+    
+    // if(req.method == 'POST') {
+
+
+    // } else {
 
         res.render('users/login')
-    }
+    // }
+})
+
+// router.post('/login/authenticate', 
+//     passport.authenticate('local', { successRedirect: '/admin', failureRedirect: '/users/login' }),
+//     function(req, res) {
+//         console.log(req.body.email)
+//         res.redirect('/');
+//     });
+
+/**
+* @description função responsavel por autenticar o usuario no sistema
+* @param redirect
+* @returns
+*/
+router.post('/login/authenticate',(req, res, next) => {
+    //...
+    console.log(req.method)
+
+    console.log('AUTENTICATE IS ON')
+    passport.authenticate("local", {
+        successRedirect: "/",
+        failureRedirect: "/users/login",
+        failureFlash: true
+    })
+    console.log('AUTENTICATE SUCCESSFULL')
+    res.redirect('/')
+    // next()
+
+
 })
 
 router.all('/register', (req, res) => {

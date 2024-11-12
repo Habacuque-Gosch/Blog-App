@@ -4,13 +4,13 @@
 
     <div class="card-body">
 
-        <form action="/users/login" method="POST">
+        <form action="/users/login/authenticate" method="POST">
 
-            <label for="user">Usuario</label>
-            <input type="text" name="user" id="user" placeholder="Digite seu usuario" class="form-control">
+            <label for="email">Email</label>
+            <input type="text" name="email" id="email" placeholder="Digite seu email" class="form-control" required>
 
-            <label for="password">Senha</label>
-            <input type="password" name="password_user" id="password_user" placeholder="Digite sua senha" class="form-control">
+            <label for="senha">Senha</label>
+            <input type="password" name="senha" id="senha" placeholder="Digite sua senha" class="form-control" required>
 
             <br>
             <button class="btn btn-success">Login</button>
