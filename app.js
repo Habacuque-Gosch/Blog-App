@@ -10,6 +10,8 @@ const session = require('express-session')
 const flash = require('connect-flash')
 const Postagem = require('./models/Postagem')
 const Categoria = require('./models/Categoria')
+const passport = require('passport')
+require('./config/auth')(passport)
 
 
 
@@ -21,6 +23,8 @@ const Categoria = require('./models/Categoria')
         saveUninitialized: true
     }))
 
+    app.use(passport.initialize())
+    app.use(passport.session())
     app.use(flash())
 
     // Middleware
@@ -50,7 +54,7 @@ const Categoria = require('./models/Categoria')
 
 // Routers
 
-    app.get('/', (req, res) => {
+    app.get('/', (req, res) => { 
         
         Postagem.findAll(
             {include: [{
