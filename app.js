@@ -127,6 +127,13 @@ require('./config/auth')(passport)
         res.render('erros/500')
     });
 
+// STRUCTURE DOCSTRING
+/**
+* @description função responsavel por autenticar o usuario no sistema
+* @param redirect
+* @returns
+*/
+
 // Server
 const PORT = 8081
 app.listen(PORT,() => {
