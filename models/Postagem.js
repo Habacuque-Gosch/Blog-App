@@ -30,11 +30,11 @@ Postagem.belongsTo(Categoria)
 // Categoria.belongsTo(Postagem)
 
 // SYNC MODEL
-Postagem.sync({force: true}).then(() =>{
-    console.log('Model postagem criado com sucesso')
-}).catch((erro) =>{
-    console.log('erro ao sync tabelas '+erro)
-})
+// Postagem.sync({force: true}).then(() =>{
+//     console.log('Model postagem criado com sucesso')
+// }).catch((erro) =>{
+//     console.log('erro ao sync tabelas '+erro)
+// })
 
 // Postagem.create({
 //     nome: "teste js code",

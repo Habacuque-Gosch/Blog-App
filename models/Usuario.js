@@ -20,10 +20,10 @@ const Usuario = db.sequelize.define('usuarios', {
 })
 
 // SYNC MODEL
-Usuario.sync({force: true}).then(() => {
-    console.log('Model Usuario criado com sucesso')
-}).catch((erro) => {
-    console.log('erro ao sync table user '+erro)
-})
+// Usuario.sync({force: true}).then(() => {
+//     console.log('Model Usuario criado com sucesso')
+// }).catch((erro) => {
+//     console.log('erro ao sync table user '+erro)
+// })
 
 module.exports = Usuario
