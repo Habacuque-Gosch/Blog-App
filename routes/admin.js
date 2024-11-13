@@ -3,11 +3,12 @@ const router = express.Router()
 const Categoria = require('../models/Categoria')
 const Postagem = require('../models/Postagem')
 const { Op } = require('sequelize');
+const {eAdmin} = require('../helpers/eAdmin')
 
 
 
 
-router.get('/', (req, res) => {
+router.get('/', eAdmin,(req, res) => {
     res.render('admin/')
 })
 

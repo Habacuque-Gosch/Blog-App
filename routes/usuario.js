@@ -23,7 +23,7 @@ router.all('/', (req, res) => {
 
 router.all('/login', (req, res) => {
 
-    // console.log(req.session)
+    console.log(req.user)
     
     // if(req.method == 'POST') {
 
