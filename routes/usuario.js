@@ -42,8 +42,10 @@ router.post('/login/authenticate',(req, res, next) => {
         successRedirect: "/",
         failureRedirect: "/users/login",
         failureFlash: true
-    })(req, res, next)
-
+    })
+    // (req, res, next)
+    res.redirect('/')
+    
     console.log('AUTENTICATE SUCCESSFULL')
 
 })
