@@ -3,7 +3,7 @@ const router = express.Router()
 const Categoria = require('../models/Categoria')
 const Postagem = require('../models/Postagem')
 const { Op } = require('sequelize');
-
+const {eAdmin} = require('../helpers/eAdmin')
 
 
 
@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
     res.render('admin/')
 })
 
-router.get('/categorias', (req, res) => {
+router.get('/categorias', eAdmin,(req, res) => {
 
     Categoria.findAll({order: [['id', 'DESC']]}).then((categorias) => {
         res.render('admin/categorias', {categorias: categorias})
@@ -21,7 +21,7 @@ router.get('/categorias', (req, res) => {
     })
 })
 
-router.all('/add-categoria', (req, res) => {
+router.all('/add-categoria', eAdmin,(req, res) => {
 
     if (req.method == 'POST'){
 
@@ -57,7 +57,7 @@ router.all('/add-categoria', (req, res) => {
 
 })
 
-router.all('/edit-categoria/:id', (req, res) => {
+router.all('/edit-categoria/:id', eAdmin,(req, res) => {
 
     var id = req.params.id
 
@@ -91,7 +91,7 @@ router.all('/edit-categoria/:id', (req, res) => {
     })
 })
 
-router.get('/delete-categoria/:id', (req, res) => {
+router.get('/delete-categoria/:id', eAdmin,(req, res) => {
     Categoria.destroy({where: {'id': req.params.id}}).then(() => {
         req.flash('success_msg', 'Categoria deletada com sucesso')
         res.redirect('/admin/categorias')
@@ -101,7 +101,7 @@ router.get('/delete-categoria/:id', (req, res) => {
     })
 })
 
-router.get('/postagens', (req, res) => {
+router.get('/postagens', eAdmin,(req, res) => {
     Postagem.findAll(
         {include: [{
             model: Categoria,
@@ -116,7 +116,7 @@ router.get('/postagens', (req, res) => {
     })
 })
 
-router.all('/add-postagens', (req, res) => {
+router.all('/add-postagens', eAdmin,(req, res) => {
     
     Categoria.findAll({order: [['id', 'DESC']]}).then(function(categorias){
 
@@ -159,7 +159,7 @@ router.all('/add-postagens', (req, res) => {
     })
 })
 
-router.all('/edit-postagem/:id', (req,res) => {
+router.all('/edit-postagem/:id', eAdmin,(req,res) => {
     id = req.params.id
 
     Postagem.findOne({where: {'id':id}}, {include: [{
@@ -207,7 +207,7 @@ router.all('/edit-postagem/:id', (req,res) => {
     })
 })
 
-router.get('/delete-postagem/:id', (req, res) => {
+router.get('/delete-postagem/:id', eAdmin,(req, res) => {
     var id_post = req.params.id
     Postagem.destroy({where: {'id': id_post}}).then(() => {
         req.flash('success_msg', 'Postagem deletada com sucesso')
