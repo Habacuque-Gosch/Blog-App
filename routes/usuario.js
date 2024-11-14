@@ -33,22 +33,16 @@ router.all('/login', (req, res) => {
     // }
 })
 
-router.post('/login/authenticate',(req, res, next) => {
+router.post('/login/authenticate', function(req, res, next) {
+    passport.authenticate('local', function(err, user, info, status) {
+        if (err) { return next(err) }
+        if (!user) { return res.redirect('/users/login') }
+        console.log(err, user, info, status)
+        res.redirect('/');
 
-    console.log(req.method)
+    })(req, res, next);
+});
 
-    console.log('AUTENTICATE IS ON')
-    passport.authenticate("local", {
-        successRedirect: "/",
-        failureRedirect: "/users/login",
-        failureFlash: true
-    })
-    // (req, res, next)
-    res.redirect('/')
-    
-    console.log('AUTENTICATE SUCCESSFULL')
-
-})
 
 router.all('/register', (req, res) => {
     if (req.method == 'POST') {
@@ -115,19 +109,6 @@ router.all('/register', (req, res) => {
         res.render('users/register')
     }
 })
-
-
-
-module.exports = router
-
-
-
-
-
-
-
-
-
 
 
 module.exports = router

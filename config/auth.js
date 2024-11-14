@@ -17,9 +17,8 @@ module.exports = function(passport){
             bcrypt.compare(senha, usuario.senha, (error, batem) => {
 
                 if(batem){
-                    console.log('bateu a senha')
                     console.log('user bateu senha: '+usuario)
-                    return done(null, usuario)
+                    return done(null, usuario, {message: 'usuario logado com sucesso'})
                 } else {
                     return done(null, false, {message: 'Senha incorreta'})
                 }
@@ -32,19 +31,17 @@ module.exports = function(passport){
 
     passport.serializeUser((usuario, done) => {
         console.log('serializou o user')
-        console.log('USER: '+usuario)
+        console.log('USER: '+usuario.nome)
         console.log('USER ID: '+usuario.id)
-        done(null, usuario.id)
+        done(null, usuario.id, {message: 'usuario logado com sucesso (serializer)'})
     })
-
-    console.log('deserializou o user init')
 
     passport.deserializeUser((id, done) => {
 
-        console.log('deserializou o user' +id)
+        console.log('deserializou o user: ' +id)
 
         User.findOne({where: {'id': id}}, (error, usuario) => {
-            console.log('deserializou o user' +usuario)
+            console.log('deserializou o user: ' +usuario.nome)
             done(error, usuario)
         })
         console.log('apos deserializou o user')
