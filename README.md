@@ -12,7 +12,7 @@
 
 :heavy_check_mark: `Funcionalidade 1:` Cadastro no WebApp
 
-:heavy_check_mark: `Funcionalidade 2:`  Login na WebApp
+:heavy_check_mark: `Funcionalidade 2:`  Login no WebApp
 
 :heavy_check_mark: `Funcionalidade 3:`  Controle de usuários
 
@@ -25,8 +25,8 @@
  
 <div align='center'>
     <h1>Aplicação<h1>
+    <a href="https://blog-app-ybwi.onrender.com/">Acesso a Blog App</a>
 </div>
-<a href="http://haba.pythonanywhere.com/">Acesso a GetHero</a>
             
 ## Ferramentas utilizadas
 
