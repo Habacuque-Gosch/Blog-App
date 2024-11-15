@@ -70,7 +70,7 @@ require('./config/auth')(passport)
 
         }).catch((error) => {
             req.flash('error_msg', 'houve um erro ao carregar as postagens: ' +error)
-            res.redirect('/')
+            res.render('blog/index')
         })
     })
 
@@ -78,7 +78,7 @@ require('./config/auth')(passport)
         Categoria.findAll({order: [['id', 'DESC']]}).then((categorias) => {
             res.render('blog/categorias', {categorias: categorias})
         }).catch((erro) => {
-            req.flash('error_msg', 'Erro interno ao carregar as categorias: '+erro)
+            req.flash('error_msg', 'Erro interno ao carregar as categorias: ')
             res.render('blog/categorias')
         })
     })
