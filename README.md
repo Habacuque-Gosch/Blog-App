@@ -25,7 +25,7 @@
  
 <div align='center'>
     <h1>Aplicação<h1>
-    <a href="https://blog-app-ybwi.onrender.com/">Acesso a Blog App</a>
+    <a href="https://blog-app-ybwi.onrender.com/">Blog App</a>
 </div>
             
 ## Ferramentas utilizadas
