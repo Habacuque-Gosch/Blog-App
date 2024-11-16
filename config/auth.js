@@ -42,11 +42,7 @@ module.exports = function(passport){
 
         User.findOne({where: {'id': id}}, (error, usuario) => {
             console.log('deserializou o user: ' +usuario.nome)
-            done(error, usuario)
+            done(error, usuario, {message: 'deserializou o user: ' +usuario.nome})
         })
-        console.log('apos deserializou o user')
-
     })
-    
-
 }
