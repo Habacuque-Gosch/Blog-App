@@ -20,12 +20,12 @@ require('./config/auth')(passport)
     // Session
     app.use(session({
         secret: 'dsadsaddwaadsadsadasdsadasdw23213213213keytest',
+        cookie: {},
         resave: true,
         saveUninitialized: true
     }))
 
     // app.use(cookieParser())
-
     app.use(passport.initialize())
     app.use(passport.session())
     app.use(flash())

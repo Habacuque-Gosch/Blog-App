@@ -23,23 +23,23 @@ router.all('/', (req, res) => {
 
 router.all('/login', (req, res) => {
 
-    // console.log(req.session)
-    
-    // if(req.method == 'POST') {
-
-    // } else {
-
+    console.log(req.user)
+    console.log(req.isAuthenticated())
     res.render('users/login')
-    // }
 })
 
 router.post('/login/authenticate', function(req, res, next) {
+    // passport.authenticate('local', {
+    //     failureRedirect: '/admin/login',
+    //     successRedirect: '/',
+    //     failureFlash: true
+    // });(req, res, next);
+
     passport.authenticate('local', function(err, user, info, status) {
         if (err) { return next(err) }
         if (!user) { return res.redirect('/users/login') }
         console.log(err, user, info, status)
         res.redirect('/');
-
     })(req, res, next);
 });
 
