@@ -24,7 +24,8 @@
 
  
 <div align='center'>
-    <h1>Aplicação<h1>
+    <h1>Aplicação</h1>
+    <img src="apresentation/index.png">
     <a href="https://blog-app-ybwi.onrender.com/">Blog App</a>
 </div>
             
