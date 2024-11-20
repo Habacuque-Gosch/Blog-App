@@ -23,8 +23,8 @@ require('dotenv').config()
     app.use(session({
         secret: secret_key,
         cookie: {},
-        resave: false,
-        saveUninitialized: false
+        resave: true,
+        saveUninitialized: true
     }))
 
     // app.use(cookieParser())
