@@ -21,7 +21,7 @@ require('dotenv').config()
     // Session
     app.use(session({
         secret: process.env.secret_key,
-        // cookie: {},
+        cookie: {},
         resave: true,
         saveUninitialized: true
     }))
