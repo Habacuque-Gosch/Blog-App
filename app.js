@@ -23,7 +23,7 @@ require('dotenv').config()
     app.use(session({
         secret: secret_key,
         // cookie: {},
-        resave: true,
+        resave: false,
         saveUninitialized: true
     }))
 
