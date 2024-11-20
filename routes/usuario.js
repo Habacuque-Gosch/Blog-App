@@ -29,19 +29,19 @@ router.all('/login', (req, res) => {
 })
 
 router.post('/login/authenticate', function(req, res, next) {
-    // passport.authenticate('local', {
-    //     failureRedirect: '/admin/login',
-    //     successRedirect: '/',
-    //     failureFlash: true
-    // });(req, res, next);
+    passport.authenticate('local', {
+        failureRedirect: '/users/login',
+        successRedirect: '/',
+        failureFlash: true
+    })(req, res, next)
 
-    passport.authenticate('local', function(err, user, info, status) {
-        if (err) { return next(err) }
-        if (!user) { return res.redirect('/users/login') }
-        console.log(err, user, info, status)
-        res.redirect('/');
-    })(req, res, next);
-});
+    // passport.authenticate('local', function(err, user, info, status) {
+    //     if (err) { return next(err) }
+    //     if (!user) { return res.redirect('/users/login') }
+    //     console.log(err, user, info, status)
+    //     res.redirect('/');
+    // })(req, res, next);
+})
 
 
 router.all('/register', (req, res) => {

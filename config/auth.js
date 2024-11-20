@@ -30,19 +30,20 @@ module.exports = function(passport){
     }))
 
     passport.serializeUser((usuario, done) => {
-        console.log('serializou o user')
-        console.log('USER: '+usuario.nome)
-        console.log('USER ID: '+usuario.id)
-        done(null, usuario.id, {message: 'usuario logado com sucesso (serializer)'})
+
+        console.log('serializou o user: ' +usuario.nome)
+
+        done(null, usuario.id)
     })
 
     passport.deserializeUser((id, done) => {
+        User.findOne({where: {'id': id}}).then((usuario) => {
 
-        console.log('deserializou o user: ' +id)
-
-        User.findOne({where: {'id': id}}, (error, usuario) => {
             console.log('deserializou o user: ' +usuario.nome)
-            done(error, usuario, {message: 'deserializou o user: ' +usuario.nome})
+
+            done(null, usuario);
+
         })
-    })
+    });
+       
 }

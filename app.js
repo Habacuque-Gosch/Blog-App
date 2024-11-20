@@ -21,8 +21,8 @@ require('./config/auth')(passport)
     app.use(session({
         secret: 'dsadsaddwaadsadsadasdsadasdw23213213213keytest',
         cookie: {},
-        resave: true,
-        saveUninitialized: true
+        resave: false,
+        saveUninitialized: false
     }))
 
     // app.use(cookieParser())
