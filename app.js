@@ -19,7 +19,7 @@ require('dotenv').config()
 
 // CONFIG
     // Session
-    const secret_key = process.env.secret_key
+    const secret_key = 'b04e6a557e9653291fc90e10d5db19f1f1162c43bb0bccb7bc88c3b58f086de3'
     app.use(session({
         secret: secret_key,
         cookie: {},
