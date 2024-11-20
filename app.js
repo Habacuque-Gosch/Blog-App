@@ -12,6 +12,7 @@ const Postagem = require('./models/Postagem')
 const Categoria = require('./models/Categoria')
 const passport = require('passport')
 require('./config/auth')(passport)
+require('dotenv').config()
 // var cookieParser=require('cookie-parser')
 
 
@@ -19,8 +20,8 @@ require('./config/auth')(passport)
 // CONFIG
     // Session
     app.use(session({
-        secret: 'dsadsaddwaadsadsadasdsadasdw23213213213keytest',
-        cookie: {},
+        secret: process.env.secret_key,
+        // cookie: {},
         resave: true,
         saveUninitialized: true
     }))

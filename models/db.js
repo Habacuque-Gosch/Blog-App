@@ -1,9 +1,9 @@
 // Connnet DB
 const Sequelize = require('sequelize');
 const pg = require('pg')
-require('dotenv/config');
+require('dotenv').config()
 
-const value_connect = 'postgresql://blog_admin:kHG4QkIIbXMgY8rMFbpdGrtozBN4aj7e@dpg-cspsjql2ng1s7396dqig-a.oregon-postgres.render.com/blog_app_suza?sslmode=none'
+const value_connect = process.env.connect_db
 
 const sequelize = new Sequelize(value_connect, {dialect: pg});
 
